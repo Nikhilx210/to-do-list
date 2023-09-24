@@ -3,10 +3,14 @@ import { useList } from "../context/Todolistcontext";
 
 
 const TodoForm = () => {
-  const [count, setcount] = useState("");
+  const [count, setcount] = useState(() => {
+    const count = localStorage.getItem("count")
+    if(count == null) return 1
+    return count
+});
   const [newItem, setNewItem] = useState("");
   const [todos,setTodos] = useList();
-  console.log(todos);
+  localStorage.setItem("count",count)
   function handleadd(e) {
     setcount((currcount) => currcount + 1);
     e.preventDefault();
@@ -14,7 +18,7 @@ const TodoForm = () => {
       return [...currentstate, { id: count, title: newItem, completed: false }];
     });
     setNewItem("");
-    console.log(todos);
+    
   }
   return (
     <form onSubmit={handleadd}>

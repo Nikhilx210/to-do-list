@@ -6,7 +6,7 @@ import { useList } from "./context/Todolistcontext";
 
 function App() {
   const[todos,setTodos] =useList();
-  console.log(todos.len)
+  
   return (
     <div>
       <TodoForm/>
