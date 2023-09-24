@@ -7,7 +7,7 @@ const TodoItem = ({todo}) => {
     setTodos((currentstate) => {
       return currentstate.map((todos) => {
         if (todos.id === id) {
-          return { ...todos, completed };
+          return {...todos, completed };
         }
         return todos;
       });
@@ -19,17 +19,20 @@ const TodoItem = ({todo}) => {
     });
   }
   return (
-    <>
-      <label>
+    <span className="listitem">
+      <label style={{margin:"10px"}}>
         <input
           checked={todo.completed}
           onChange={(e) => toggletodo(todo.id, e.target.checked)}
           type="checkbox"
         />
-        <h3 className="todoblur">{todo.title}</h3>
+      
+      {todo.completed? <h3 className="todoblur">{todo.title}</h3>:<h3 className="nottodoblur">{todo.title}</h3>}
       </label>
+      
       <button onClick={() => handledelete(todo.id)}>Delete</button>
-    </>
+      
+    </span>
   );
 };
 
